@@ -1,58 +1,116 @@
-# Svelte library
+# 💰 Transaction Manager - Svelte 5
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+Una aplicación de gestión de transacciones financieras construida con Svelte 5 que permite visualizar, categorizar y analizar gastos personales.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+## 🌟 Características
 
-## Creating a project
+### Funcionalidades Principales
+- ✅ **Visualización de transacciones** en tabla sorteable por fecha, monto y categoría
+- ✅ **Filtrado avanzado** por rango de fechas, categoría
+- ✅ **Categorización manual** con selectores dropdown
+- ✅ **Auto-categorización inteligente** basada en palabras clave
+- ✅ **Analíticas en tiempo real** con totales y estadísticas
+- ✅ **Diseño responsivo** que funciona en móvil y desktop
 
-If you're seeing this, you've probably already done this step. Congrats!
 
-```bash
-# create a new project in the current directory
-npx sv create
+## 🏗️ Arquitectura Técnica
 
-# create a new project in my-app
-npx sv create my-app
+### Stack Tecnológico
+- **Frontend**: Svelte 5 con runes (`$state`, `$derived`, `$props`)
+- **Styling**: CSS vanilla con diseño moderno
+- **Datos**: JSON en localStorage (55+ transacciones de ejemplo)
+
+### Arquitectura de Components
+```
++page.svelte
+├── Panel
+        ├── Filters & Sort & Totals
+        ├── Bulk Actions
+        └── Analytics
+├── Tabla
+        ├── Headers
+        ├── Rows
+        └── Items
+
 ```
 
-## Developing
+### Uso de Svelte 5 Runes
+- **`$state`**: Para datos reactivos (transacciones, filtros, ordenamiento)
+- **`$derived`**: Para computaciones reactivas (transacciones filtradas, analíticas)
+- **`$props`**: Para recibir datos de transacciones
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## 🚀 Instalación y Configuración
 
+### Prerequisitos
+- Node.js 18+ 
+- npm o pnpm
+
+### Paso 1: Clonar repository
+```bash
+npm create sveltekit@latest transaction-manager
+cd transaction-manager
+```
+
+### Paso 2: Instalar dependencias
+```bash
+npm i
+```
+
+### Paso 3: Reemplazar archivos
+1. Reemplaza el contenido de `src/app.html` con estructura HTML básica
+2. Crea `src/lib/TransactionManager.svelte` con el código del componente
+3. Actualiza `src/routes/+page.svelte` para usar el componente
+
+### Paso 3: Ejecutar la aplicación
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+La aplicación estará disponible en `http://localhost:5173`
 
-## Building
+## 📊 Lógica de Categorización
 
-To build your library:
+### Auto-categorización
+El sistema incluye reglas inteligentes para categorizar automáticamente las transacciones:
 
-```bash
-npm run package
+```javascript
+const categorizationRules = {
+  'STARBUCKS': 'Coffee',
+  'WHOLE FOODS': 'Groceries', 
+  'AMAZON': 'Shopping',
+  'UBER': 'Transportation',
+  'NETFLIX': 'Entertainment',
+  'RENT': 'Housing',
+  // ... y más
+};
 ```
 
-To create a production version of your showcase app:
+### Categorías Disponibles
+- ☕ Coffee
+- 🛒 Groceries  
+- 🛍️ Shopping
+- 📱 Electronics
+- ⛽ Gas
+- 🚗 Transportation
+- 🎬 Entertainment
+- 🍕 Food
+- 🏠 Housing
+- ⚡ Utilities
+- 💰 Income
+- 💸 Transfer
+- 🏥 Healthcare
+- 🔨 Home Improvement
+- 💻 Software
+- 👕 Clothing
+- 🎁 Gifts
 
-```bash
-npm run build
-```
+## 🧪 Casos de Uso
 
-You can preview the production build with `npm run preview`.
+### Flujo Básico del Usuario
+1. **Visualización**: El usuario ve todas las transacciones en la tabla
+2. **Filtrado**: Aplica filtros por fecha, categoría
+3. **Categorización**: Revisa y ajusta categorías sugeridas
+4. **Análisis**: Examina el dashboard de analíticas
+5. **Acciones en lote**: Usa atajos para categorizar rápidamente
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
 
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
-```
