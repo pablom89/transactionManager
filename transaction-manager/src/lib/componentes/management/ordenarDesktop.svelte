@@ -46,8 +46,8 @@
 			name="ad"
 			id="ad"
 			bind:value={ordenado.m}
-			class:noPermitido={ordenado.campo === false}
-			disabled={ordenado.campo !== false && !$loadingDataTabla ? false : true}
+			class={ordenado.campo ? " " : "noPermitido"}
+			disabled={ordenado.campo && !$loadingDataTabla ? false : true}
 			onchange={modo}
 		>
 			<option value="asc" selected>Ascendant</option>
@@ -55,11 +55,10 @@
 		</select>
 
 		<button
-			class="buttonBorrarOrdenar"
-			class:noPermitido={ordenado.campo === false || $loadingDataTabla}
+			class={ordenado.campo ? "buttonBorrarOrdenar" : "buttonBorrarOrdena noPermitido"}
 			title="Clean Filter"
 			aria-label="Clean Filter"
-			disabled={ordenado.campo !== false && !$loadingDataTabla ? false : true}
+			disabled={ordenado.campo && !$loadingDataTabla ? false : true}
 			onclick={async () => {
 				ordenado.campo = false;
 				ordenado.name = false;
