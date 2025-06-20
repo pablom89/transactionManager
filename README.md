@@ -51,7 +51,8 @@ git clone https://github.com/pablom89/transactionManager.git
 ```
 ### Step 2: Install dependencies
 ```bash
-npm run dev
+cd transactionManager/transaction-manager
+npm i
 ```
 
 ### Step 3: Run the application
