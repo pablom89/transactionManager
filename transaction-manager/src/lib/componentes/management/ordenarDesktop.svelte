@@ -1,8 +1,10 @@
 <script>
 	import { cargar } from '$lib/logica/cargar.js';
-	import { dataTableParams, loadingDataTabla } from '$lib/store/store.js';
+	import { dataTableParams, loadingDataTabla, mobile } from '$lib/store/store.js';
 
-	let ordenado = $derived($dataTableParams.items.ordenado);
+	let ordenado = $derived(
+		$mobile ? $dataTableParams.itemsMobile.ordenado : $dataTableParams.items.ordenado
+	);
 
 	let placeholder = 'Select...';
 
@@ -20,9 +22,8 @@
 </script>
 
 <div>
-	<span class="g1">Sort by:</span>
+	<span>Sort by:</span>
 	{#if ordenado}
-	<!-- svelte-ignore binding_property_non_reactive -->
 		<select
 			name="ordenar"
 			id="ordenar"
@@ -41,13 +42,12 @@
 				{/each}
 			{/if}
 		</select>
-		<!-- svelte-ignore binding_property_non_reactive -->
 		<select
 			name="ad"
 			id="ad"
 			bind:value={ordenado.m}
-			class:noPermitido={!ordenado.campo}
-			disabled={ordenado.campo && !$loadingDataTabla ? false : true}
+			class:noPermitido={ordenado.campo === false}
+			disabled={ordenado.campo !== false && !$loadingDataTabla ? false : true}
 			onchange={modo}
 		>
 			<option value="asc" selected>Ascendant</option>
@@ -56,10 +56,10 @@
 
 		<button
 			class="buttonBorrarOrdenar"
-			class:noPermitido={!ordenado.campo || $loadingDataTabla}
+			class:noPermitido={ordenado.campo === false || $loadingDataTabla}
 			title="Clean Filter"
 			aria-label="Clean Filter"
-			disabled={ordenado.campo && !$loadingDataTabla ? false : true}
+			disabled={ordenado.campo !== false && !$loadingDataTabla ? false : true}
 			onclick={async () => {
 				ordenado.campo = false;
 				ordenado.name = false;
