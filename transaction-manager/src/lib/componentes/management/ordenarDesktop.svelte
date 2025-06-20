@@ -22,6 +22,7 @@
 <div>
 	<span class="g1">Sort by:</span>
 	{#if ordenado}
+	<!-- svelte-ignore binding_property_non_reactive -->
 		<select
 			name="ordenar"
 			id="ordenar"
@@ -40,6 +41,7 @@
 				{/each}
 			{/if}
 		</select>
+		<!-- svelte-ignore binding_property_non_reactive -->
 		<select
 			name="ad"
 			id="ad"

@@ -45,5 +45,5 @@
 
 <div class="container">
 	<label for="auto">Auto categorize</label>
-	<input type="checkbox" id="auto-categorize" bind:checked onchange={changeAutoCategorize} />
+	<input type="checkbox" id="auto" bind:checked onchange={changeAutoCategorize} />
 </div>

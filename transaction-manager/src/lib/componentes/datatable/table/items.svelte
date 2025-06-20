@@ -1,15 +1,15 @@
 <script>
 	import { dataTableParams } from '$lib/store/store.js';
 	import { categories } from '$lib/categories.js';
-	
-	let {items, f} = $props();
+
+	let { items, f } = $props();
 
 	const setCategory = (f) => {
 		let stored = localStorage.getItem('data');
 		let data = JSON.parse(stored);
-		
-		data = data.map(item => {
-			if(item.id === f.id) {
+
+		data = data.map((item) => {
+			if (item.id === f.id) {
 				item.category = f.category;
 				item.manualCategory = true;
 			}
@@ -27,6 +27,7 @@
 		<td style="text-align:center; font-size:{i.f_s};">-</td>
 	{:else if i.name === 'category'}
 		<td style="text-align:{i.a}; font-size:{i.f_s};">
+			<!-- svelte-ignore binding_property_non_reactive -->
 			<select bind:value={f.category} onchange={() => setCategory(f)}>
 				{#each categories as c (c.id)}
 					<option value={c.text}>{c.text}</option>
