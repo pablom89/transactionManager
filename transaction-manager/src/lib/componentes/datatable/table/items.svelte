@@ -1,7 +1,8 @@
 <script>
 	import { dataTableParams } from '$lib/store/store.js';
 	import { categories } from '$lib/categories.js';
-	export let items, f;
+	
+	let {items, f} = $props();
 
 	const setCategory = (f) => {
 		let stored = localStorage.getItem('data');
@@ -21,13 +22,13 @@
 	};
 </script>
 
-{#each items as i}
+{#each items as i, index (index)}
 	{#if f[i.name] === null}
 		<td style="text-align:center; font-size:{i.f_s};">-</td>
 	{:else if i.name === 'category'}
 		<td style="text-align:{i.a}; font-size:{i.f_s};">
-			<select bind:value={f.category} on:change={() => setCategory(f)}>
-				{#each categories as c}
+			<select bind:value={f.category} onchange={() => setCategory(f)}>
+				{#each categories as c (c.id)}
 					<option value={c.text}>{c.text}</option>
 				{/each}
 			</select>

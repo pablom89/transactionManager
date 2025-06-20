@@ -2,7 +2,7 @@
 	import { cargar } from '$lib/logica/cargar.js';
 	import { dataTableParams, loadingDataTabla } from '$lib/store/store.js';
 
-	let ordenado = $dataTableParams.items.ordenado;
+	let ordenado = $derived($dataTableParams.items.ordenado);
 
 	let placeholder = 'Select...';
 
@@ -28,12 +28,12 @@
 			class:noPermitido={$loadingDataTabla}
 			disabled={$loadingDataTabla}
 			bind:value={ordenado.campo}
-			on:change={seleccion}
+			onchange={seleccion}
 		>
 			<option value={false} selected disabled>{placeholder}</option>
 
 			{#if $dataTableParams.items.colum}
-				{#each $dataTableParams.items.colum as d}
+				{#each $dataTableParams.items.colum as d, index (index)}
 					{#if d.o}
 						<option value={d.name}>{d.title}</option>
 					{/if}
@@ -46,7 +46,7 @@
 			bind:value={ordenado.m}
 			class:noPermitido={!ordenado.campo}
 			disabled={ordenado.campo && !$loadingDataTabla ? false : true}
-			on:change={modo}
+			onchange={modo}
 		>
 			<option value="asc" selected>Ascendant</option>
 			<option value="desc">Descend</option>
@@ -58,7 +58,7 @@
 			title="Clean Filter"
 			aria-label="Clean Filter"
 			disabled={ordenado.campo && !$loadingDataTabla ? false : true}
-			on:click={async () => {
+			onclick={async () => {
 				ordenado.campo = false;
 				ordenado.name = false;
 				ordenado.m = 'asc';

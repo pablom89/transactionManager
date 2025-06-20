@@ -4,14 +4,13 @@
 	import SinDatos from '$lib/componentes/datatable/table/sinDatos.svelte';
 	import { dataTableParams, loadingDataTabla } from '$lib/store/store.js';
 
-	export let items;
+	let { items } = $props();
 </script>
 
 <div class="container">
 	<table class="tablaRound">
 		<thead>
 			<Encabezado {items} />
-			<slot name="filtros" {items} />
 		</thead>
 		{#if $loadingDataTabla}
 			<tbody>
@@ -20,9 +19,7 @@
 				</tr>
 			</tbody>
 		{:else if $dataTableParams.filas.length}
-			<Filas let:f>
-				<slot {f} />
-			</Filas>
+			<Filas {items}/>
 		{:else}
 			<SinDatos />
 		{/if}

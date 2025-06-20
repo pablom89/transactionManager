@@ -8,9 +8,11 @@
 		maximumFractionDigits: 2
 	});
 
-	$: totalAmount = $dataTableParams.filas.reduce((acc, fila) => {
-		return acc + (fila.amount || 0);
-	}, 0);
+	let totalAmount = $derived(
+		$dataTableParams.filas.reduce((acc, fila) => {
+			return acc + (fila.amount || 0);
+		}, 0)
+	);
 </script>
 
 <div class="container">

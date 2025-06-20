@@ -26,19 +26,16 @@
 		>
 	</div>
 </div>
-{#if $dataTableParams.filas.length}
-	<div class="active" style="margin-bottom: 10px;">
-		{#if activePanel === 'Management'}
-			<Management />
-		{:else if activePanel === 'Smart Categorization'}
-			<SmartCategorization />
-		{:else if activePanel === 'Analytics'}
-			<Analytics />
-		{/if}
-	</div>
-{:else}
-	Cargando...
-{/if}
+
+<div class="active" style="margin-bottom: 10px; min-height: 150px;">
+	{#if activePanel === 'Management'}
+		<Management />
+	{:else if activePanel === 'Smart Categorization'}
+		<SmartCategorization />
+	{:else if activePanel === 'Analytics'}
+		<Analytics />
+	{/if}
+</div>
 
 <style>
 	.active {

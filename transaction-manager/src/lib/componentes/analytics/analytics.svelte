@@ -8,16 +8,14 @@
 		maximumFractionDigits: 2
 	});
 
-	let analytics = {};
+	let analytics = $derived(() => {
+		if (!$dataTableParams.filas) return {};
 
-	$: if ($dataTableParams.filas) {
 		const categoryTotals = {};
 		let totalIncome = 0;
 		let totalExpenses = 0;
 
-		let data = $dataTableParams.filas;
-
-		data.forEach((t) => {
+		$dataTableParams.filas.forEach((t) => {
 			if (!categoryTotals[t.category]) {
 				categoryTotals[t.category] = 0;
 			}
@@ -30,39 +28,42 @@
 			}
 		});
 
-		const avgTransaction = data.length > 0 ? (totalIncome - totalExpenses) / data.length : 0;
+		const netAmount = totalIncome - totalExpenses;
+		const avgTransaction =
+			$dataTableParams.filas.length > 0 ? netAmount / $dataTableParams.filas.length : 0;
 
-		analytics = {
+		return {
 			categoryTotals,
 			totalIncome,
 			totalExpenses,
-			netAmount: totalIncome - totalExpenses,
+			netAmount,
 			avgTransaction
 		};
-	}
+	});
+
 </script>
 
 <div class="mainContainer">
-	{#if analytics}
+	{#if analytics()}
 		<div class="container">
 			<div class="titulo">
-				Total Income: <span class="tituloBlack">{formatter.format(analytics.totalIncome)}</span>
+				Total Income: <span class="tituloBlack">{formatter.format(analytics().totalIncome)}</span>
 			</div>
 			<div class="titulo">
-				Total Expenses: <span class="tituloBlack">{formatter.format(analytics.totalExpenses)}</span>
+				Total Expenses: <span class="tituloBlack">{formatter.format(analytics().totalExpenses)}</span>
 			</div>
 			<div class="titulo">
-				Total Net Amount: <span class="tituloBlack">{formatter.format(analytics.netAmount)}</span>
+				Total Net Amount: <span class="tituloBlack">{formatter.format(analytics().netAmount)}</span>
 			</div>
 			<div class="titulo">
 				Average Transaction: <span class="tituloBlack"
-					>{formatter.format(analytics.avgTransaction)}</span
+					>{formatter.format(analytics().avgTransaction)}</span
 				>
 			</div>
 		</div>
 		<div class="container">
 			<div class="titulo">Total by category:</div>
-			{#each Object.entries(analytics.categoryTotals) as [category, total]}
+			{#each Object.entries(analytics().categoryTotals) as [category, total] (category)}
 				<div>{category || 'Uncategorized'}: {formatter.format(total)}</div>
 			{/each}
 		</div>

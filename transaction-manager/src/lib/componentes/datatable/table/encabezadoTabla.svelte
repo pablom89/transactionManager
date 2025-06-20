@@ -1,9 +1,9 @@
 <script>
-	export let items;
+	let { items } = $props();
 </script>
 
 <tr>
-	{#each items as i}
+	{#each items as i, index (index)}
 		<th style={`min-width: ${i.m_w}; width:${i.w}; font-size: ${i.f_s}; text-align: ${i.a}`}>
 			{i.title}
 		</th>
