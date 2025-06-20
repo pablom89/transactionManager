@@ -1,26 +1,26 @@
 # 💰 Transaction Manager - Svelte 5
 
-Una aplicación de gestión de transacciones financieras construida con Svelte 5 que permite visualizar, categorizar y analizar gastos personales.
+A financial transaction management application built with Svelte 5 that allows you to view, categorize, and analyze personal expenses.
 
-## 🌟 Características
+## 🌟 Features
 
-### Funcionalidades Principales
-- ✅ **Visualización de transacciones** en tabla sorteable por fecha, monto y categoría
-- ✅ **Filtrado avanzado** por rango de fechas, categoría
-- ✅ **Categorización manual** con selectores dropdown
-- ✅ **Auto-categorización inteligente** basada en palabras clave
-- ✅ **Analíticas en tiempo real** con totales y estadísticas
-- ✅ **Diseño responsivo** que funciona en móvil y desktop
+### Core Functionality
+- ✅ **Transaction visualization** in a sortable table by date, amount, and category 
+- ✅ **Advanced filtering** by date range and category 
+- ✅ **Manual categorization** using dropdown selectors 
+- ✅ **Smart auto-categorization** based on keywords 
+- ✅ **Real-time analytics** with totals and statistics 
+- ✅ **Responsive design** that works on mobile and desktop 
 
 
-## 🏗️ Arquitectura Técnica
+## 🏗️ Technical Architecture
 
-### Stack Tecnológico
-- **Frontend**: Svelte 5 con runes (`$state`, `$derived`, `$props`)
-- **Styling**: CSS vanilla con diseño moderno
-- **Datos**: JSON en localStorage (55+ transacciones de ejemplo)
+### Tech Stack
+- **Frontend**: Svelte 5 with runes (`$state`, `$derived`, `$props`) 
+- **Styling**: Vanilla CSS with a modern layout 
+- **Data**: JSON in localStorage (55+ example transactions) 
 
-### Arquitectura de Components
+### Component Architecture
 ```
 +page.svelte
 ├── Panel
@@ -34,44 +34,37 @@ Una aplicación de gestión de transacciones financieras construida con Svelte 5
 
 ```
 
-### Uso de Svelte 5 Runes
-- **`$state`**: Para datos reactivos (transacciones, filtros, ordenamiento)
-- **`$derived`**: Para computaciones reactivas (transacciones filtradas, analíticas)
-- **`$props`**: Para recibir datos de transacciones
+### Use of Svelte 5 Runes
+- **`$state`**: For reactive data (transactions, filters, sorting) 
+- **`$derived`**: For reactive computations (filtered transactions, analytics) 
+- **`$props`**: For receiving transaction data 
 
-## 🚀 Instalación y Configuración
+## 🚀 Installation & Setup
 
-### Prerequisitos
+### Prerequisites
 - Node.js 18+ 
-- npm o pnpm
+- npm or pnpm 
 
-### Paso 1: Clonar repository
+### Step 1: Clone the repository
 ```bash
-npm create sveltekit@latest transaction-manager
-cd transaction-manager
+git clone https://github.com/pablom89/transactionManager.git
 ```
-
-### Paso 2: Instalar dependencias
-```bash
-npm i
-```
-
-### Paso 3: Reemplazar archivos
-1. Reemplaza el contenido de `src/app.html` con estructura HTML básica
-2. Crea `src/lib/TransactionManager.svelte` con el código del componente
-3. Actualiza `src/routes/+page.svelte` para usar el componente
-
-### Paso 3: Ejecutar la aplicación
+### Step 2: Install dependencies
 ```bash
 npm run dev
 ```
 
-La aplicación estará disponible en `http://localhost:5173`
+### Step 3: Run the application
+```bash
+npm run dev
+```
 
-## 📊 Lógica de Categorización
+The app will be available at http://localhost:5173
 
-### Auto-categorización
-El sistema incluye reglas inteligentes para categorizar automáticamente las transacciones:
+## 📊 Categorization Logic
+
+### Auto-categorization
+The system includes smart rules to automatically categorize transactions:
 
 ```javascript
 const categorizationRules = {
@@ -85,9 +78,9 @@ const categorizationRules = {
 };
 ```
 
-### Categorías Disponibles
+### Available Categories
 - ☕ Coffee
-- 🛒 Groceries  
+- 🛒 Groceries 
 - 🛍️ Shopping
 - 📱 Electronics
 - ⛽ Gas
@@ -104,13 +97,14 @@ const categorizationRules = {
 - 👕 Clothing
 - 🎁 Gifts
 
-## 🧪 Casos de Uso
+## 🧪 Use Cases
 
-### Flujo Básico del Usuario
-1. **Visualización**: El usuario ve todas las transacciones en la tabla
-2. **Filtrado**: Aplica filtros por fecha, categoría
-3. **Categorización**: Revisa y ajusta categorías sugeridas
-4. **Análisis**: Examina el dashboard de analíticas
-5. **Acciones en lote**: Usa atajos para categorizar rápidamente
+### Basic User Flow
+1. **Viewing**: The user sees all transactions in the table 
+2. **Filtering**: Applies filters by date and category 
+3. **Categorization**: Reviews and adjusts suggested categories 
+4. **Analysis**: Examines the analytics dashboard 
+5. **Bulk Actions**: Uses shortcuts to quickly categorize 
+
 
 
