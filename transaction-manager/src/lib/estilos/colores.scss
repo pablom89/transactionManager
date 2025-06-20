@@ -1,0 +1,41 @@
+:root {
+	//Body
+
+	--fondoBody: rgba(0, 0, 0, 0.4);
+
+	//Titulos
+
+	--titulo: rgb(14, 14, 110);
+	--tituloRed: rgb(151, 8, 8);
+
+	//Tablas
+
+	--fondoEncabezado: black;
+	--textoEncabezado: white;
+	--fondoFilaImpar: rgb(212, 212, 245);
+	--textoFilaImpar: black;
+	--fondoFilaPar: rgb(177, 177, 192);
+	--textoFilaPar: black;
+	--fondoFilaFiltro: #352c6f;
+	--fondoHover: rgb(206 185 148);
+	--padding: 10px;
+
+    // Formulario
+	--borderRadius: 15px;
+
+	// Inputs
+
+	--colorInput: #000;
+	--fondoInput: #f1f1f1;
+
+	// Botones
+
+	--fondoBotones: rgb(206 185 148);
+	--textoBotones: white;
+	--borderRadiusBotones: 4px;
+	--fondoBotonesDanger: rgb(185, 13, 13);
+
+	// Errores
+
+	--error: red;
+}

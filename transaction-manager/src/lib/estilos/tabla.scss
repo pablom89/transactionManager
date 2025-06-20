@@ -1,0 +1,60 @@
+// TablaRound
+
+tr td {
+  padding: 5px;
+}
+
+.tablaRound {
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: fit-content;
+}
+
+.tablaRound tr td {
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.tablaRound thead {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.tablaRound thead tr th {
+  padding: 0px 10px;
+  text-align: left;
+  background-color: var(--fondoEncabezado);
+  color: var(--textoEncabezado);
+  border-right: 1px solid black;
+}
+
+.tablaRound thead tr:last-child {
+  background-color: var(--fondoFilaFiltro);
+}
+
+.tablaRound th:not(:last-child) {
+  border-right: 1px solid white;
+}
+
+.tablaRound tbody tr:nth-child(odd) {
+  background-color: var(--fondoFilaImpar);
+}
+
+.tablaRound tbody tr:nth-child(even) {
+  background-color: var(--fondoFilaPar);
+}
+
+.tablaRound tbody tr:hover {
+  background-color: var(--fondoHover);
+}
+
+@media screen and (max-width: 500px) {
+  .tablaRound {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 245px;
+    width: 100%;
+    box-shadow: none;
+  }
+}
